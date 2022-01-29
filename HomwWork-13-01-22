@@ -1,0 +1,23 @@
+from datetime import datetime
+
+
+class Timer:
+    _Timer = None
+
+    @classmethod
+    def get_instance(cls):
+        if cls._Timer is None:
+            cls._Timer = cls.__new__(cls)
+            Timer.start_timer()
+        return cls._Timer
+
+    @classmethod
+    def start_timer(cls):
+        cls._Timer.start_time = datetime.now()
+
+    @classmethod
+    def get_timer(cls):
+        current_time = datetime.now()
+        difference = current_time - cls._Timer.start_time
+        return difference
+
